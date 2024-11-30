@@ -6,7 +6,7 @@ db.hospital_appointments.aggregate([
 			"status": "completed",
 			"date": { 
 				$gte: "2023-01-01",
-				$lte: "2024-012-31"
+				$lte: "2023-12-31"
 			}
 		}
 	},
@@ -26,7 +26,7 @@ db.hospital_appointments.aggregate([
 	},
 	{ 
 		$group: { 
-			_id: { firstName: "$doctor.first_name", lastName: "$doctor.last_name" }, 
+			_id: "$doctor.full_name", 
 			totalRevenue: { $sum: "$price" }
 		} 
 	},
@@ -40,7 +40,7 @@ use('csis3300');
 db.hospital_appointments.aggregate([
 	{ 
 		$group: { 
-			_id: "$doctor.last_name", 
+			_id: "$doctor.full_name", 
 			avgDuration: { $avg: "$duration" } 
 		} 
 	},
@@ -68,7 +68,7 @@ use('csis3300');
 db.hospital_appointments.aggregate([
 	{ 
 		$group: {
-			_id: { firstName: "$doctor.first_name", lastName: "$doctor.last_name" },
+			_id: "$doctor.full_name",
 			appointmentCount: { $sum: 1 }
 		} 
 	},

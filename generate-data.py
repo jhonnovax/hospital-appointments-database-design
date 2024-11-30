@@ -9,7 +9,7 @@ fake = Faker()
 specialties = ['Cardiology', 'Neurology', 'Orthopedics', 'Pediatrics', 'Dermatology']
 statuses = ['active', 'onleave']
 appointment_statuses = ['completed', 'cancelled', 'pending']
-genders = ['male', 'female', 'non-binary']
+genders = ['male', 'female']
 conditions = ['High blood pressure', 'Back pain', 'Diabetes', 'Asthma', 'Migraine']
 diagnoses = ['Hypertension', 'Sciatica', 'Type 2 Diabetes', 'Chronic Asthma', 'Recurrent Migraine']
 medications = ['Metformin', 'Ibuprofen', 'Amlodipine', 'Salbutamol', 'Topiramate']
@@ -22,15 +22,13 @@ cities = ['Vancouver', 'Toronto', 'Montreal', 'Calgary', 'Winnipeg', 'Edmonton',
 data = []
 for i in range(1, 1001):
     doctor = {
-        'first_name': f'Dr. {fake.first_name()}',
-        'last_name': fake.last_name(),
+        'full_name': f'Dr. {fake.full_name()}',
         'specialty': random.choice(specialties),
         'license_number': fake.unique.random_int(100000, 999999),
         'status': random.choice(statuses)
     }
     patient = {
-        'first_name': fake.first_name(),
-        'last_name': fake.last_name(),
+        'full_name': f'Dr. {fake.full_name()}',
         'birth_date': fake.date_of_birth(minimum_age=0, maximum_age=90).isoformat(),
         'gender': random.choice(genders),
         'email': fake.unique.email(),
@@ -60,8 +58,8 @@ for i in range(1, 1001):
         'device': device,
         'date': fake.date_this_year().isoformat(),
         'status': random.choice(appointment_statuses),
-        'price': round(random.uniform(50, 500), 2),
-        'duration': random.randint(15, 120)
+        'price': round(random.uniform(50, 300), 2),
+        'duration': random.randint(15, 120)        
     }
     data.append(record)
 
