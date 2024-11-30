@@ -5,8 +5,8 @@ db.hospital_appointments.aggregate([
 		$match: { 
 			"status": "completed",
 			"date": { 
-				$gte: "2020-05-01",
-				$lte: "2024-05-31"
+				$gte: "2023-01-01",
+				$lte: "2024-012-31"
 			}
 		}
 	},
@@ -38,8 +38,15 @@ db.hospital_appointments.aggregate([
 // What is the average duration of appointments by doctor? 
 use('csis3300');
 db.hospital_appointments.aggregate([
-	{ $group: { _id: "$doctor.last_name", avgDuration: { $avg: "$duration" } } },
-	{ $sort: { avgDuration: -1 } }
+	{ 
+		$group: { 
+			_id: "$doctor.last_name", 
+			avgDuration: { $avg: "$duration" } 
+		} 
+	},
+	{ 
+		$sort: { avgDuration: -1 } 
+	}
 ])
 
 // How many appointments by specialty? 
